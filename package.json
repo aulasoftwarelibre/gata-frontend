@@ -6,9 +6,16 @@
     "storybook": "start-storybook -p 9001 -c config/storybook"
   },
   "devDependencies": {
+    "@storybook/addon-info": "^3.4.10",
     "@storybook/react": "^3.4.10",
+    "@types/jest": "^23.3.1",
+    "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
+    "jest": "^23.4.2",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-dom": "^16.4.2",
+    "ts-jest": "^23.1.3",
+    "typescript": "^3.0.1"
   }
 }
