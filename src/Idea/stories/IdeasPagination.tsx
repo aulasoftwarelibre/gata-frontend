@@ -7,14 +7,20 @@ import { storiesOf } from '@storybook/react';
 import IdeasPagination from '../components/IdeasPagination';
 
 const currentPage = 1;
-const totalPages = 10;
+const defaultTotalPages = 10;
+const minTotalPages = 2;
 
 storiesOf('Ideas pagination', module)
     .add('default', () => (
         <IdeasPagination
             currentPage={currentPage}
             handleOnPageChange={action('page-changed')}
-            totalPages={number('Páginas totales', totalPages)}
+            totalPages={number('Páginas', defaultTotalPages, {
+                max: Infinity,
+                min: minTotalPages,
+                range: true,
+                step: 1
+            })}
         />
     ))
 ;
