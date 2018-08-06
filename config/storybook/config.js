@@ -6,8 +6,8 @@ import 'semantic-ui-css/semantic.min.css';
 addDecorator(centered);
 addDecorator(withKnobs);
 
-loadStories = () => {
-    // You can require as many stories as you need.
+const loadStories = () => {
+    require('../../src/Idea/stories/IdeasPagination');
 };
 
 configure(loadStories, module);
