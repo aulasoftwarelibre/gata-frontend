@@ -1,5 +1,14 @@
 {
-  "name": "aulasoftwarelibre/gata",
+  "name": "aulasoftwarelibre-gata",
   "description": "Gestión y Administración de Tareas del Aula",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c config/storybook"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.4.10",
+    "babel-core": "^6.26.3",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
 }
