@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Icon, Pagination } from 'semantic-ui-react';
 
 interface IdeasPaginationProps {
-    /** @default 1 */
     currentPage?: number;
     handleOnPageChange: (page: number) => void;
     totalPages: number;
@@ -11,7 +10,7 @@ interface IdeasPaginationProps {
 
 export default ({ currentPage, handleOnPageChange, totalPages }: IdeasPaginationProps) =>
     <Pagination
-        defaultActivePage={currentPage}
+        defaultActivePage={currentPage || 1}
         ellipsisItem={{content: <Icon name='ellipsis horizontal' />, icon: true}}
         firstItem={{content: <Icon name='angle double left' />, icon: true}}
         lastItem={{content: <Icon name='angle double right' />, icon: true}}
