@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'moment/locale/es';
 
 const loadStories = () => {
+    require('../../src/Application/Idea/stories/IdeaCard');
     require('../../src/Application/Idea/stories/IdeasPagination');
 };
 
