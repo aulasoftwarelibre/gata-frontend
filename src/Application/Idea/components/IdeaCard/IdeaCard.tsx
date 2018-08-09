@@ -1,11 +1,14 @@
 import * as moment from 'moment';
 import * as React from 'react';
 
-import { Button, Card, Icon } from 'semantic-ui-react';
+import Comment from 'src/Domain/Comment/Comment';
+import IdeaStatus from 'src/Domain/Idea/IdeaStatus';
+import User from 'src/Domain/User/User';
 
-import Comment from 'Domain/Comment/Comment';
-import IdeaStatus from 'Domain/Idea/IdeaStatus';
-import User from 'Domain/User/User';
+import { Card, Icon } from 'semantic-ui-react';
+
+import CardStatus from './IdeaCardStatus';
+import CardTitle from './IdeaCardTitle';
 
 export interface IdeaCardProps {
     attendee?: boolean;
@@ -40,9 +43,12 @@ export default ({
     status,
     title
 }: IdeaCardProps): JSX.Element =>
-    <Card fluid>
+    <Card>
         <Card.Content>
-            <Card.Header>{title}</Card.Header>
+            <CardStatus status={status} />
+            <CardTitle>
+                {title}
+            </CardTitle>
             <Card.Meta>
                 {author}
                 <span className="right floated">
@@ -50,32 +56,6 @@ export default ({
                 </span>
             </Card.Meta>
             <Card.Description dangerouslySetInnerHTML={{__html: description}} />
-            {
-                attendee &&
-                <Button
-                    content='SALIR'
-                    floated='right'
-                    onClick={handleOnExitClick}
-                    positive
-                />
-            }
-            {
-                !attendee && closed &&
-                <Button
-                    content='CERRADA'
-                    disabled
-                    floated='right'
-                    negative
-                />
-            }
-            {
-                !attendee && !closed &&
-                <Button
-                    content='PARTICIPAR'
-                    floated='right'
-                    onClick={handleOnJoinClick}
-                />
-            }
         </Card.Content>
         <Card.Content extra>
             <a onClick={handleOnCommentsClick}>
