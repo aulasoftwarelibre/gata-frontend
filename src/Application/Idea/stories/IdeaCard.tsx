@@ -4,11 +4,11 @@ import { storiesOf } from '@storybook/react';
 import * as faker from 'faker';
 import * as React from 'react';
 
-import Comment from 'Domain/Comment/Comment';
-import IdeaStatus from 'Domain/Idea/IdeaStatus';
-import User from 'Domain/User/User';
+import Comment from 'src/Domain/Comment/Comment';
+import IdeaStatus, { values as statusValues } from '../../../../src/Domain/Idea/IdeaStatus';
+import User from 'src/Domain/User/User';
 
-import IdeaCard from '../components/IdeaCard';
+import IdeaCard from '../components/IdeaCard/IdeaCard';
 
 const attendee: boolean = false;
 const attendees: User[] = Array<User>(faker.random.number({max: 10, min: 0})).map(() => {
@@ -41,8 +41,7 @@ const comments: Comment[] = Array<Comment>(faker.random.number({max: 10, min: 0}
 const datetime: Date = faker.date.recent();
 const description: string = faker.lorem.paragraphs();
 const seats: number = faker.random.number({max: 10, min: attendees.length});
-const status: IdeaStatus = 'pending';
-const statusOptions: IdeaStatus[] = ['accepted', 'pending', 'rejected'];
+const status: IdeaStatus = faker.random.arrayElement(statusValues);
 const title: string = faker.lorem.sentence();
 
 storiesOf('Idea card', module)
@@ -59,8 +58,8 @@ storiesOf('Idea card', module)
             handleOnCommentsClick={action('comments-clicked')}
             handleOnExitClick={action('exit-clicked')}
             handleOnJoinClick={action('join-clicked')}
-            seats={number('Seats', seats)}
-            status={select('Status', statusOptions, status)}
+            seats={number('Seats', seats, {max: Infinity, min: 1, range: true, step: 1})}
+            status={select('Status', statusValues, status)}
             title={text('Title', title)}
         />
     ))
