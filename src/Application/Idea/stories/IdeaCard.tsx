@@ -10,7 +10,7 @@ import User from 'src/Domain/User/User';
 
 import IdeaCard from '../components/IdeaCard/IdeaCard';
 
-const attendee: boolean = false;
+const attendee: boolean = faker.random.boolean();
 const attendees = (number: number): User[] =>
     Array<User>(number).map(() => {
         const firstName = faker.name.firstName();
@@ -25,7 +25,7 @@ const attendees = (number: number): User[] =>
     })
 ;
 const author: string = faker.name.findName();
-const closed: boolean = false;
+const closed: boolean = faker.random.boolean();
 const comments = (number: number): Comment[] =>
     Array<Comment>(number).map(() => {
         const firstName = faker.name.firstName();
