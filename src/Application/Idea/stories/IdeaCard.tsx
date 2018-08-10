@@ -12,39 +12,31 @@ import IdeaCard from '../components/IdeaCard/IdeaCard';
 
 const attendee: boolean = faker.random.boolean();
 const attendees = (number: number): User[] =>
-    Array<User>(number).map(() => {
-        const firstName = faker.name.firstName();
-        const lastName = faker.name.lastName();
-
-        return ({
-            avatar: faker.image.avatar(),
-            firstName: firstName,
-            lastName: lastName,
-            username: faker.internet.userName(firstName, lastName),
-        });
-    })
+    Array<User>(number).map(() => ({
+        avatar: faker.image.avatar(),
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        username: faker.internet.userName(),
+    }))
 ;
+const attendeesNumber = faker.random.number({max: 100, min: 0});
 const author: string = faker.name.findName();
 const closed: boolean = faker.random.boolean();
 const comments = (number: number): Comment[] =>
-    Array<Comment>(number).map(() => {
-        const firstName = faker.name.firstName();
-        const lastName = faker.name.lastName();
-
-        return({
-            author: {
-                avatar: faker.image.avatar(),
-                firstName: firstName,
-                lastName: lastName,
-                username: faker.internet.userName(firstName, lastName),
-            },
-            text: faker.lorem.sentences(),
-        });
-    })
+    Array<Comment>(number).map(() => ({
+        author: {
+            avatar: faker.image.avatar(),
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            username: faker.internet.userName(),
+        },
+        text: faker.lorem.sentences(),
+    }))
 ;
+const commentsNumber = faker.random.number({max: 100, min: 0});
 const datetime: Date = faker.date.recent();
 const description: string = faker.lorem.paragraphs();
-const seats: number = faker.random.number({max: 100, min: attendees.length});
+const seats: number = faker.random.number({max: 100, min: attendeesNumber});
 const status: IdeaStatus = faker.random.arrayElement(statusValues);
 const title: string = faker.lorem.sentence();
 
@@ -52,10 +44,14 @@ storiesOf('Idea card', module)
     .add('default', () => (
         <IdeaCard
             attendee={boolean('Are you attendee?', attendee)}
-            attendees={attendees(number('Attendees', 10, {max: 100, min: 0, range: true, step: 1}))}
+            attendees={attendees(
+                number('Attendees', attendeesNumber, {max: 100, min: 0, range: true, step: 1})
+            )}
             author={text('Author', author)}
             closed={boolean('Is closed?', closed)}
-            comments={comments(number('Comments', 10, {max: 100, min: 0, range: true, step: 1}))}
+            comments={comments(
+                number('Comments', commentsNumber, {max: 100, min: 0, range: true, step: 1})
+            )}
             datetime={date('Date', datetime)}
             description={text('Description', description)}
             handleOnAttendeesClick={action('attendees-clicked')}
