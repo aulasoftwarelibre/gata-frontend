@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import IdeaStatus, { accepted, pending, rejected } from '../../../../../src/Domain/Idea/IdeaStatus';
+import IdeaStatus, { accepted, pending, rejected } from '@domain/Idea/IdeaStatus';
 
 import { Label } from 'semantic-ui-react';
 

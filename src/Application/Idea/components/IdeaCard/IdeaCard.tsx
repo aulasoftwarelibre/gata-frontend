@@ -1,9 +1,9 @@
 import * as moment from 'moment';
 import * as React from 'react';
 
-import Comment from 'src/Domain/Comment/Comment';
-import IdeaStatus from 'src/Domain/Idea/IdeaStatus';
-import User from 'src/Domain/User/User';
+import Comment from '@domain/Comment/Comment';
+import IdeaStatus from '@domain/Idea/IdeaStatus';
+import User from '@domain/User/User';
 
 import { Card, Icon } from 'semantic-ui-react';
 

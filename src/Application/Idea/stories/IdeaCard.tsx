@@ -4,9 +4,9 @@ import { storiesOf } from '@storybook/react';
 import * as faker from 'faker';
 import * as React from 'react';
 
-import Comment from 'src/Domain/Comment/Comment';
-import IdeaStatus, { values as statusValues } from '../../../../src/Domain/Idea/IdeaStatus';
-import User from 'src/Domain/User/User';
+import Comment from '@domain/Comment/Comment';
+import IdeaStatus, { values as statusValues } from '@domain/Idea/IdeaStatus';
+import User from '@domain/User/User';
 
 import IdeaCard from '../components/IdeaCard/IdeaCard';
 

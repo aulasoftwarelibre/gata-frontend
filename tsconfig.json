@@ -15,6 +15,11 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "outDir": "dist",
+    "paths": {
+      "@application/*": ["src/Application/*"],
+      "@config/*": ["config/*"],
+      "@domain/*": ["src/Domain/*"]
+    },
     "rootDirs": ["config", "src"],
     "sourceMap": true,
     "strictNullChecks": true,

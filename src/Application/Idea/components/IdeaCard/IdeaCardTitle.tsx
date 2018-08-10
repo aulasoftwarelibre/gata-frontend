@@ -1,4 +1,4 @@
-import styled from '../../../../../config/styled-components/styled-components';
+import styled from '@config/styled-components/styled-components';
 
 import { Card } from 'semantic-ui-react';
 
