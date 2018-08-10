@@ -67,7 +67,7 @@ export default ({
                 onClick={handleOnAttendeesClick}
             >
                 <Icon name={attendees.length === 1 ? 'user' : 'users'} />
-                {attendees.length}{seats && `/${seats}`}
+                {attendees.length}{seats !== null && `/${seats}`}
             </a>
         </Card.Content>
     </Card>
