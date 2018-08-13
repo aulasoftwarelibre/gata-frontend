@@ -1,8 +1,11 @@
-export type IdeaStatus = 'accepted' | 'pending' | 'rejected';
+export type IdeaStatus =
+    | 'accepted'
+    | 'pending'
+    | 'rejected'
+;
 
-export const accepted: IdeaStatus = 'accepted';
-export const pending: IdeaStatus = 'pending';
-export const rejected: IdeaStatus = 'rejected';
-export const values: IdeaStatus[] = [accepted, pending, rejected];
+export const ACCEPTED: IdeaStatus = 'accepted';
+export const PENDING: IdeaStatus = 'pending';
+export const REJECTED: IdeaStatus = 'rejected';
 
 export default IdeaStatus;
