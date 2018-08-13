@@ -43,7 +43,7 @@ export default ({
     status,
     title
 }: IdeaCardProps): JSX.Element =>
-    <Card>
+    <Card fluid>
         <Card.Content>
             <CardStatus status={status} />
             <CardTitle>
