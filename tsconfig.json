@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "declaration": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,11 +15,17 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "outDir": "dist",
-    "rootDir": "src",
+    "paths": {
+      "@application/*": ["src/Application/*"],
+      "@config/*": ["config/*"],
+      "@domain/*": ["src/Domain/*"]
+    },
+    "rootDirs": ["config", "src"],
     "sourceMap": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5"
+    "target": "es5",
+    "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["config", "src"]
 }

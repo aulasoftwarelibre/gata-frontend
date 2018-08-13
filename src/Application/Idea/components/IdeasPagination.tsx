@@ -2,13 +2,17 @@ import * as React from 'react';
 
 import { Icon, Pagination } from 'semantic-ui-react';
 
-interface IdeasPaginationProps {
+export interface IdeasPaginationProps {
     currentPage?: number;
     handleOnPageChange: (page: number) => void;
     totalPages: number;
 }
 
-export default ({ currentPage, handleOnPageChange, totalPages }: IdeasPaginationProps) =>
+export default ({
+    currentPage,
+    handleOnPageChange,
+    totalPages
+}: IdeasPaginationProps): JSX.Element =>
     <Pagination
         defaultActivePage={currentPage || 1}
         ellipsisItem={{content: <Icon name='ellipsis horizontal' />, icon: true}}
