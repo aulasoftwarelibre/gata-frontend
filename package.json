@@ -10,6 +10,7 @@
     "@storybook/addon-centered": "^3.4.10",
     "@storybook/addon-info": "^3.4.10",
     "@storybook/addon-knobs": "^3.4.10",
+    "@storybook/addon-viewport": "^3.4.10",
     "@storybook/react": "^4.0.0-alpha.3",
     "@types/faker": "^4.1.2",
     "@types/jest": "^23.3.1",
