@@ -1,47 +1,32 @@
 import * as moment from 'moment';
 import * as React from 'react';
-
-import Comment from '@domain/Comment/Comment';
-import IdeaStatus from '@domain/Idea/IdeaStatus';
-import User from '@domain/User/User';
-
 import { Card, Icon } from 'semantic-ui-react';
 
-import CardStatus from './IdeaCardStatus';
-import CardTitle from './IdeaCardTitle';
+import Idea from '@domain/Idea/Idea';
+import CardStatus from '@application/Idea/components/IdeaCard/IdeaCardStatus';
+import CardTitle from '@application/Idea/components/IdeaCard/IdeaCardTitle';
 
 export interface IdeaCardProps {
-    attendee?: boolean;
-    attendees: User[];
-    author: string;
-    closed?: boolean;
-    comments: Comment[];
-    datetime: Date;
-    description: string;
     handleOnAttendeesClick: () => void;
     handleOnCommentsClick: () => void;
     handleOnExitClick: () => void;
     handleOnJoinClick: () => void;
-    seats?: number;
-    status: IdeaStatus;
-    title: string;
+    idea: Idea;
 }
 
 export default ({
-    attendee,
-    attendees,
-    author,
-    closed,
-    comments,
-    datetime,
-    description,
     handleOnAttendeesClick,
     handleOnCommentsClick,
-    handleOnExitClick,
-    handleOnJoinClick,
-    seats,
-    status,
-    title
+    idea: {
+        attendees,
+        capacity,
+        comments,
+        createdAt,
+        createdBy: { firstName, lastName },
+        description,
+        status,
+        title,
+    },
 }: IdeaCardProps): JSX.Element =>
     <Card fluid>
         <Card.Content>
@@ -50,9 +35,9 @@ export default ({
                 {title}
             </CardTitle>
             <Card.Meta>
-                {author}
+                {`${firstName} ${lastName}`}
                 <span className="right floated">
-                    {moment(datetime).fromNow()}
+                    {moment(createdAt).fromNow()}
                 </span>
             </Card.Meta>
             <Card.Description dangerouslySetInnerHTML={{__html: description}} />
@@ -67,7 +52,7 @@ export default ({
                 onClick={handleOnAttendeesClick}
             >
                 <Icon name={attendees.length === 1 ? 'user' : 'users'} />
-                {attendees.length}{seats !== null && `/${seats}`}
+                {attendees.length}{capacity && `/${capacity}`}
             </a>
         </Card.Content>
     </Card>

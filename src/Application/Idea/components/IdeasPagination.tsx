@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { Icon, Pagination } from 'semantic-ui-react';
 
 export interface IdeasPaginationProps {
@@ -11,7 +10,7 @@ export interface IdeasPaginationProps {
 export default ({
     currentPage,
     handleOnPageChange,
-    totalPages
+    totalPages,
 }: IdeasPaginationProps): JSX.Element =>
     <Pagination
         defaultActivePage={currentPage || 1}
