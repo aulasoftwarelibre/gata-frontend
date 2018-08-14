@@ -4,15 +4,20 @@ import { storiesOf } from '@storybook/react';
 import * as faker from 'faker';
 import * as React from 'react';
 
-import IdeasPagination from '../components/IdeasPagination';
+import IdeasPagination from '@application/Idea/components/IdeasPagination';
 
-const totalPages: number = faker.random.number({max: 100, min: 2});
+const totalPages: number = faker.random.number(100);
 
 storiesOf('Ideas pagination', module)
     .add('default', () => (
         <IdeasPagination
-            handleOnPageChange={action('page-changed')}
-            totalPages={number('Total pages', totalPages, {max: 100, min: 2, range: true, step: 1})}
+            handleOnPageChange={action(
+                'page-changed',
+            )}
+            totalPages={number(
+                'Total pages',
+                totalPages,
+            )}
         />
     ))
 ;

@@ -1,6 +1,7 @@
-import User from '../User/User';
+import User from '@domain/User/User';
 
 export default interface Comment {
-    author: User;
+    createdBy: User;
+    createdAt: Date;
     text: string;
-}
+};

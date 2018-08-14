@@ -1,47 +1,35 @@
-import * as moment from 'moment';
+import { Moment } from 'moment';
 import * as React from 'react';
-
-import Comment from '@domain/Comment/Comment';
-import IdeaStatus from '@domain/Idea/IdeaStatus';
-import User from '@domain/User/User';
-
 import { Card, Icon } from 'semantic-ui-react';
 
-import CardStatus from './IdeaCardStatus';
-import CardTitle from './IdeaCardTitle';
+import CardStatus from '@application/Idea/components/IdeaCard/IdeaCardStatus';
+import CardTitle from '@application/Idea/components/IdeaCard/IdeaCardTitle';
+import IdeaStatus from "@domain/Idea/IdeaStatus";
 
 export interface IdeaCardProps {
-    attendee?: boolean;
-    attendees: User[];
-    author: string;
-    closed?: boolean;
-    comments: Comment[];
-    datetime: Date;
+    attendees: number;
+    capacity?: number;
+    comments: number;
+    createdAt: Moment;
+    createdBy: string;
     description: string;
     handleOnAttendeesClick: () => void;
     handleOnCommentsClick: () => void;
-    handleOnExitClick: () => void;
-    handleOnJoinClick: () => void;
-    seats?: number;
     status: IdeaStatus;
     title: string;
 }
 
 export default ({
-    attendee,
     attendees,
-    author,
-    closed,
+    capacity,
     comments,
-    datetime,
+    createdAt,
+    createdBy,
     description,
     handleOnAttendeesClick,
     handleOnCommentsClick,
-    handleOnExitClick,
-    handleOnJoinClick,
-    seats,
     status,
-    title
+    title,
 }: IdeaCardProps): JSX.Element =>
     <Card fluid>
         <Card.Content>
@@ -50,24 +38,24 @@ export default ({
                 {title}
             </CardTitle>
             <Card.Meta>
-                {author}
+                {createdBy}
                 <span className="right floated">
-                    {moment(datetime).fromNow()}
+                    {createdAt.fromNow()}
                 </span>
             </Card.Meta>
             <Card.Description dangerouslySetInnerHTML={{__html: description}} />
         </Card.Content>
         <Card.Content extra>
             <a onClick={handleOnCommentsClick}>
-                <Icon name={comments.length === 1 ? 'comment' : 'comments'} />
-                {comments.length}
+                <Icon name={comments === 1 ? 'comment' : 'comments'} />
+                {comments}
             </a>
             <a
                 className='right floated'
                 onClick={handleOnAttendeesClick}
             >
-                <Icon name={attendees.length === 1 ? 'user' : 'users'} />
-                {attendees.length}{seats !== null && `/${seats}`}
+                <Icon name={attendees === 1 ? 'user' : 'users'} />
+                {attendees}{capacity !== null && `/${capacity}`}
             </a>
         </Card.Content>
     </Card>
