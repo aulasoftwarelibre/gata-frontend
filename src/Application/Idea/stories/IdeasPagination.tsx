@@ -6,14 +6,17 @@ import * as React from 'react';
 
 import IdeasPagination from '@application/Idea/components/IdeasPagination';
 
+const totalPages: number = faker.random.number(100);
+
 storiesOf('Ideas pagination', module)
     .add('default', () => (
         <IdeasPagination
-            handleOnPageChange={action('page-changed')}
+            handleOnPageChange={action(
+                'page-changed',
+            )}
             totalPages={number(
                 'Total pages',
-                faker.random.number({max: 100, min: 2}),
-                {max: 100, min: 2, range: true, step: 1},
+                totalPages,
             )}
         />
     ))

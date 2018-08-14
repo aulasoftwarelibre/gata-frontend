@@ -1,85 +1,64 @@
 import { action } from '@storybook/addon-actions';
-import { date, number, object, select, text } from '@storybook/addon-knobs/react';
+import { date, number, select, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import * as faker from 'faker';
+import * as moment from 'moment';
 import * as React from 'react';
 
 import IdeaCard from '@application/Idea/components/IdeaCard/IdeaCard';
-import Comment from '@domain/Comment/Comment';
-import Idea from '@domain/Idea/Idea';
-import { ACCEPTED, PENDING, REJECTED } from '@domain/Idea/IdeaStatus';
-import User from '@domain/User/User';
+import IdeaStatus, { ACCEPTED, PENDING, REJECTED } from '@domain/Idea/IdeaStatus';
 
-const attendees = (number: number): User[] =>
-    Array<User>(number).map(() => ({
-        avatar: faker.image.avatar(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        name: faker.internet.userName(),
-    }))
-;
-const attendeesNumber: number = faker.random.number({max: 100, min: 0});
-const comments = (number: number): Comment[] =>
-    Array<Comment>(number).map(() => ({
-        createdBy: {
-            avatar: faker.image.avatar(),
-            firstName: faker.name.firstName(),
-            lastName: faker.name.lastName(),
-            name: faker.internet.userName(),
-        },
-        createdAt: faker.date.recent(),
-        text: faker.lorem.sentences(),
-    }))
-;
-const commentsNumber: number = faker.random.number({max: 100, min: 0});
-const idea: Idea = {
-    attendees: attendees(number(
-        'Attendees',
-        attendeesNumber,
-        {max: 100, min: 0, range: true, step: 1},
-    )),
-    capacity: number(
-        'Capacity',
-        faker.random.number({max: 100, min: attendees.length}),
-    ),
-    comments: comments(number(
-        'Comments',
-        commentsNumber,
-        {max: 100, min: 0, range: true, step: 1},
-    )),
-    createdAt: date(
-        'Created at',
-        faker.date.recent(),
-    ),
-    createdBy: {
-        avatar: faker.image.avatar(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        name: faker.internet.userName(),
-    },
-    description: text(
-        'Description',
-        faker.lorem.paragraphs(),
-    ),
-    status: select(
-        'Status',
-        [ACCEPTED, PENDING, REJECTED],
-        faker.random.arrayElement([ACCEPTED, PENDING, REJECTED]),
-    ),
-    title: text(
-        'Title',
-        faker.lorem.sentence(),
-    ),
-};
+const attendees: number = faker.random.number(100);
+const capacity: number = faker.random.number(100);
+const comments: number = faker.random.number(100);
+const createdAt: Date = faker.date.recent();
+const createdBy: string = faker.name.findName();
+const description: string = faker.lorem.paragraphs();
+const status: IdeaStatus = faker.random.arrayElement([ACCEPTED, PENDING, REJECTED]);
+const title: string = faker.lorem.sentence();
 
 storiesOf('Idea card', module)
     .add('default', () => (
         <IdeaCard
-            handleOnAttendeesClick={action('attendees-clicked')}
-            handleOnCommentsClick={action('comments-clicked')}
-            handleOnExitClick={action('exit-clicked')}
-            handleOnJoinClick={action('join-clicked')}
-            idea={object('Idea', idea)}
+            attendees={number(
+                'Attendees',
+                attendees,
+            )}
+            capacity={number(
+                'Capacity',
+                capacity,
+            )}
+            comments={number(
+                'Comments',
+                comments,
+            )}
+            createdAt={moment(date(
+                'Created at',
+                createdAt,
+            ))}
+            createdBy={text(
+                'Created by',
+                createdBy,
+            )}
+            description={text(
+                'Description',
+                description,
+            )}
+            handleOnAttendeesClick={action(
+                'attendees-clicked',
+            )}
+            handleOnCommentsClick={action(
+                'comments-clicked',
+            )}
+            status={select(
+                'Status',
+                [ACCEPTED, PENDING, REJECTED],
+                status,
+            )}
+            title={text(
+                'Title',
+                title,
+            )}
         />
     ))
 ;
